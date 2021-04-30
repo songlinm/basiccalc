@@ -20,7 +20,7 @@ func Prefix(r io.Reader) (ret float64, err error) {
 
 func prefixCalc(op string, scanner *bufio.Scanner) (float64, error) {
 	if !scanner.Scan() {
-		// no more words
+		// no more tokens - this is allowed if the given operator is actually a number
 		if val, err := strconv.ParseFloat(op, 64); err == nil {
 			return val, nil
 		} else {
@@ -32,7 +32,7 @@ func prefixCalc(op string, scanner *bufio.Scanner) (float64, error) {
 	arg1 := scanner.Text()
 	val1, err := strconv.ParseFloat(arg1, 64)
 	if err != nil {
-		// token arg1 is an eval
+		// token arg1 is an operator
 		if val1, err = prefixCalc(arg1, scanner); err != nil {
 			return 0, err
 		}
@@ -40,7 +40,7 @@ func prefixCalc(op string, scanner *bufio.Scanner) (float64, error) {
 
 	// Evaluate the second argument
 	if !scanner.Scan() {
-		// no more words
+		// no more token
 		return 0, fmt.Errorf(`Missing second parameter for eval %s`, op)
 	}
 	arg2 := scanner.Text()

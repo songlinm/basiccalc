@@ -40,13 +40,11 @@ func infix(scanner *bufio.Scanner) (float64, error) {
 		return 0, fmt.Errorf(`Token %s is not a number: %v`, arg1, err)
 	}
 
-	// Evaluate the eval
+	// The next token should be the operator
 	if !scanner.Scan() {
 		// allow having one single number
 		return val1, nil
 	}
-
-	// The next token should be the eval
 	op := scanner.Text()
 
 	// Evaluate the second argument
