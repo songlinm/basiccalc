@@ -7,7 +7,13 @@ See ```calc/prefix.go```
 ## Infix Calculator
 See ```calc/infix.go```
 
-### Cavet
+## Test
+Various test cases have been created for both the prefix and infix calculators.
+```
+cd calc && go test .
+```
+
+## Cavet
 The Infix expression needs to be fully parenthesised. For instance
 
 ```
@@ -25,12 +31,18 @@ The reason is because the current solution uses the openning parenthesis to indi
 
 ## Web Server
 Source code: ```web/server.go```
+
+To run
+```
+cd web && go run .
+```
+
 To deploy on Google App Engine:
 ```
 gcloud app deploy
 ```
 
-A version has been deployed here
+A live version has been deployed here
 https://basiccalc.nw.r.appspot.com
 
 To test

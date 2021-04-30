@@ -34,10 +34,10 @@ func infix(scanner *bufio.Scanner) (float64, error) {
 
 		// consume the ending parenthesis
 		if !scanner.Scan() || scanner.Text() != ")" {
-			return 0, fmt.Errorf(`Unmatched (`)
+			return 0, fmt.Errorf(`unmatched (`)
 		}
 	} else if val1, err = strconv.ParseFloat(arg1, 64); err != nil {
-		return 0, fmt.Errorf(`Token %s is not a number: %v`, arg1, err)
+		return 0, fmt.Errorf(`token %s is not a number: %v`, arg1, err)
 	}
 
 	// The next token should be the operator
@@ -49,7 +49,7 @@ func infix(scanner *bufio.Scanner) (float64, error) {
 
 	// Evaluate the second argument
 	if !scanner.Scan() {
-		return 0, fmt.Errorf(`Missing second argument for %s %s`, arg1, op)
+		return 0, fmt.Errorf(`missing second argument for %s %s`, arg1, op)
 	}
 	arg2 := scanner.Text()
 	if arg2 == "(" {
@@ -59,10 +59,10 @@ func infix(scanner *bufio.Scanner) (float64, error) {
 
 		// consume the ending parenthesis
 		if !scanner.Scan() || scanner.Text() != ")" {
-			return 0, fmt.Errorf(`Unmatched (`)
+			return 0, fmt.Errorf(`unmatched (`)
 		}
 	} else if val2, err = strconv.ParseFloat(arg2, 64); err != nil {
-		return 0, fmt.Errorf(`Token %s is not a number: %v`, arg2, err)
+		return 0, fmt.Errorf(`token %s is not a number: %v`, arg2, err)
 	}
 
 	return eval(op, val1, val2)

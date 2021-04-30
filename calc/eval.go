@@ -15,10 +15,10 @@ func eval(op string, arg1, arg2 float64) (float64, error) {
 		return arg1 * arg2, nil
 	case "/":
 		if arg2 == 0 {
-			return 0, fmt.Errorf("Divided by zero: %s %f %f", op, arg1, arg2)
+			return 0, fmt.Errorf("divided by zero: %s %f %f", op, arg1, arg2)
 		}
 		return float64(arg1) / float64(arg2), nil
 	default:
-		return 0, fmt.Errorf("Unsupported operator - %s %f %f", op, arg1, arg2)
+		return 0, fmt.Errorf("unsupported operator - %s %f %f", op, arg1, arg2)
 	}
 }
